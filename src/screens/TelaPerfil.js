@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, SafeAreaView } from 'react-native'
 import TelaPerfilContent from '../components/TelaPerfil/TelaPerfilContent'
 import TelaPerfilHeader from '../components/TelaPerfil/TelaPerfilHeader'
+import TelaPerfilProfile from '../components/TelaPerfil/TelaPerfilProfile'
 
 const styles = StyleSheet.create(
     {
@@ -28,9 +29,10 @@ const styles = StyleSheet.create(
 )
 
 
-export default props => (
+export default ({navigation}) => (
     <SafeAreaView style={styles.container}>
-        <TelaPerfilHeader name="Meu perfil" style = {styles.header}/>
+        <TelaPerfilHeader navigation = {navigation} name="Meu perfil" style = {styles.header}/>
+        <TelaPerfilProfile name = "Vitor Estima"/>
         <TelaPerfilContent style = {styles.content}/>
     </SafeAreaView>
 )

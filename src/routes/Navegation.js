@@ -4,18 +4,20 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Icon from "react-native-vector-icons/FontAwesome"
 import TelaPerfil from '../screens/TelaPerfil'
 import TelaJardim from '../screens/TelaJardim'
+import TelaAdicionarPlanta from '../screens/TelaAdicionarPlanta'
+import { TelaJardimNavigator, TelaPerfilNavigator, TelaAdicionarPlantaNavigator } from './StackNavigation'
 
 const Tab = createMaterialTopTabNavigator();
 
 export default props => (
     <Tab.Navigator
-        initialRouteName="TelaIntro"
+        initialRouteName="TelaPerfil"
 
         tabBarPosition="bottom"
 
         tabBarOptions={{
             showLabel: false,
-            activeTintColor: 'black',
+            activeTintColor: '#5DB075',
             inactiveTintColor: 'lightgray',
             indicatorStyle: {
                 height: 0
@@ -30,12 +32,10 @@ export default props => (
                 elevation: 0
             }
         }}
-
-
     >
         <Tab.Screen
-            name="TelaIntro"
-            component={TelaPerfil}
+            name="TelaPerfil"
+            component={TelaPerfilNavigator}
             options={{
                 tabBarIcon: ({ color, size }) => {
                     return <Icon name="circle" color={color} size={25} />
@@ -43,8 +43,17 @@ export default props => (
             }}
         />
         <Tab.Screen
-            name="TelaCapa"
-            component={TelaJardim}
+            name="TelaJardim"
+            component={TelaJardimNavigator}
+            options={{
+                tabBarIcon: ({ color, size }) => {
+                    return <Icon name="circle" color={color} size={25} />
+                },
+            }}
+        />
+        <Tab.Screen
+            name="TelaAdicionarPlanta"
+            component={TelaAdicionarPlantaNavigator}
             options={{
                 tabBarIcon: ({ color, size }) => {
                     return <Icon name="circle" color={color} size={25} />

@@ -3,7 +3,7 @@ import { Text, StyleSheet, View, Image } from 'react-native'
 
 const style = StyleSheet.create({
     title: {
-        fontWeight: "800",
+        fontWeight: "bold",
         fontFamily: "inter",
         fontSize: 18
     },
@@ -19,7 +19,7 @@ const style = StyleSheet.create({
         padding: 10
     },
     img: {
-        marginRight:10,
+        marginRight: 10,
         paddingLeft: 10,
         paddingRight: 10,
         height: 67,
@@ -27,13 +27,13 @@ const style = StyleSheet.create({
         justifyContent: "center"
     },
     textBorder: {
-        flex:1,
+        flex: 1,
         borderBottomColor: 'lightgray',
         borderBottomWidth: 1
     },
-    timeLeft:{
-        color:'lightgray',
-        marginLeft:10
+    timeLeft: {
+        color: 'lightgray',
+        marginLeft: 10
     }
 
 })
@@ -41,17 +41,14 @@ const style = StyleSheet.create({
 export default (props) => {
     return (
         <View style={style.container}>
-            <Image source= {props.img} style={style.img}/>
+            <Image source={props.img} style={style.img} />
             <View style={style.textBorder}>
 
-                <Text style={style.title}>{props.title}</Text>
-                <Text style={style.desc}>{props.desc}</Text>
-            </View>
+                <Text style = {style.title} >{ props.name }</Text>
+                <Text style={style.desc}>Adicionado em: {props.date}</Text>
+                <Text style={style.desc}>Monitoramento: {props.monitor}</Text>
 
-            <View>
-                <Text style={style.timeLeft}>em 8 min  </Text>
             </View>
-
         </View>
     )
 }
