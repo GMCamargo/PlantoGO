@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet, View, Image } from 'react-native'
+import { Text, StyleSheet, View, Image, TouchableOpacity } from 'react-native'
 
 const style = StyleSheet.create({
     title: {
@@ -39,12 +39,16 @@ const style = StyleSheet.create({
 })
 
 export default (props) => {
+    const dic = {
+        '../../images/orquidea.png': require('../../images/orquidea.png')
+    }
     return (
         <View style={style.container}>
-            <Image source={props.img} style={style.img} />
+
+            <Image source={dic[props.img]} style={style.img} />
             <View style={style.textBorder}>
 
-                <Text style = {style.title} >{ props.name }</Text>
+                <Text style={style.title} >{props.name}</Text>
                 <Text style={style.desc}>Adicionado em: {props.date}</Text>
                 <Text style={style.desc}>Monitoramento: {props.monitor}</Text>
 

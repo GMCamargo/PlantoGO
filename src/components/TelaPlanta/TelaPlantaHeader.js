@@ -4,7 +4,6 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
 const style = StyleSheet.create({
     header: {
         height: 180,
-        justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#5DB075",
         flexDirection: "row",
@@ -15,12 +14,13 @@ const style = StyleSheet.create({
         fontSize: 30,
         color: "white",
         fontWeight: "600",
-        paddingLeft: 75,
-        paddingRight: 75,
+        paddingLeft: "15%",
+        paddingRight: 58,
         paddingTop: 10,
         fontFamily: "inter"
     },
     smallText: {
+        marginLeft:10,
         fontSize: 16,
         color: "white",
         fontWeight: "500",
@@ -32,18 +32,12 @@ export default (props) => {
     return (
         <View style={style.header}>
             <TouchableOpacity
-            onPress={() => props.navigation.navigate("TelaLogin")}
+            onPress={() => props.navigation.navigate("TelaJardim")}
             >
-                <Text style={style.smallText}>Logout</Text>
+                <Text style={style.smallText}>Back</Text>
             </TouchableOpacity>
 
             <Text style={style.bigText}>{props.name}</Text>
-            
-            <TouchableOpacity
-                onPress={() => props.navigation.navigate("TelaJardim")}
-            >
-                <Text style={style.smallText}>Jardim</Text>
-            </TouchableOpacity>
         </View>
     )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { color } from 'react-native-reanimated';
@@ -46,7 +46,6 @@ const style = StyleSheet.create({
         alignSelf: "stretch"
     },
     rightButton: {
-        backgroundColor: "white",
         borderTopLeftRadius: 80,
         borderBottomLeftRadius: 80,
         padding: 10,
@@ -58,8 +57,7 @@ const style = StyleSheet.create({
         borderBottomRightRadius: 80,
         padding: 10,
         flex:1,
-        alignItems: "center",
-        backgroundColor:"lightgrey"
+        alignItems: "center"
     },
     buttonText:{
         fontFamily: "inter",
@@ -67,26 +65,34 @@ const style = StyleSheet.create({
         fontWeight: "900"
     },
     activeButton:{
+        backgroundColor: "white",
+    },
+    activeText:{
         color:"#5DB075"
     },
     inactiveButton:{
-        color: "grey"
+        backgroundColor:"lightgrey"
+    },
+    inactiveText:{
+        color: 'grey'
     }
 })
 export default (props) => {
+    const [log, setLog] = useState(true)
     return (
         <View style={style.margem}>
             <View style={style.buttons}>
                 <TouchableOpacity
-                    style={style.rightButton}
+                    style={log ? [style.rightButton, style.activeButton] : [style.rightButton, style.inactiveButton]}
+                    onPress = {() => setLog(true)}
                 >
-                    <Text style= {[style.buttonText, style.activeButton]}> Proximos </Text>
+                    <Text style= {log ? [style.buttonText, style.activeText] : [style.buttonText, style.inactiveText]}> Proximos </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style = {style.leftButton}
-                    disabled={true}
+                    style = {!log ? [style.leftButton, style.activeButton] : [style.leftButton, style.inactiveButton]}
+                    onPress = {() => setLog(false)}
                 >
-                    <Text style = {[style.buttonText, style.inactiveButton]}> Passados </Text>
+                    <Text style = {log ? [style.buttonText, style.inactiveText] : [style.buttonText, style.activeText]}> Passados </Text>
                 </TouchableOpacity>
             </View>
             <FlatList

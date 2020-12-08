@@ -1,10 +1,6 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import Icon from "react-native-vector-icons/FontAwesome"
-import TelaPerfil from '../screens/TelaPerfil'
-import TelaJardim from '../screens/TelaJardim'
-import TelaAdicionarPlanta from '../screens/TelaAdicionarPlanta'
 import { TelaJardimNavigator, TelaPerfilNavigator, TelaAdicionarPlantaNavigator } from './StackNavigation'
 
 const Tab = createMaterialTopTabNavigator();

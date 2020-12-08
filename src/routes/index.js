@@ -1,12 +1,12 @@
 import React from 'react'
 import {SafeAreaView, Text} from 'react-native'
 import {NavigationContainer} from '@react-navigation/native'
-import Navegation from './Navegation'
+import LoginNavigation from './LoginNavigation'
 
 export default props => (
     <SafeAreaView style={{flex:1, justifyContent: 'center'}}>
         <NavigationContainer>
-            <Navegation/>
+            <LoginNavigation/>
         </NavigationContainer>
     </SafeAreaView>
 )

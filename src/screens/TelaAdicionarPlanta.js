@@ -62,12 +62,14 @@ const style = StyleSheet.create({
         alignSelf: "stretch"
     },
     rightButton: {
-        backgroundColor: "white",
         borderTopLeftRadius: 80,
         borderBottomLeftRadius: 80,
         padding: 10,
         flex: 1,
         alignItems: "center"
+    },
+    activeButton: {
+        backgroundColor: "white",
     },
     leftButton: {
         borderTopRightRadius: 80,
@@ -75,6 +77,9 @@ const style = StyleSheet.create({
         padding: 10,
         flex: 1,
         alignItems: "center",
+
+    },
+    inactiveButton: {
         backgroundColor: "lightgrey"
     },
     buttonText: {
@@ -87,12 +92,36 @@ const style = StyleSheet.create({
 export default (props) => {
     const [nome, setNome] = useState('')
     const [planta, setPlanta] = useState('Girassol')
+    const [monitoramento, setMonitoramento] = useState(true)
+
+    const adiocionarPlanta = () => {
+        return fetch('https://plantgo.herokuapp.com/create_plant', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                login: 'cleito',
+                garden: 'main',
+                nickname: nome,
+                specie: planta.toLowerCase(),
+                monitoring: monitoramento ? 'true' : 'false'
+
+            })
+        })
+            .then((response) => {
+                response = response.json()
+                console.warn(response)
+            })
+            .catch((error) => console.error(error))
+    }
     return (
         <ScrollView>
             <View style={style.container}>
                 <View style={style.header}>
                     <TouchableOpacity
-                        onPress = {() => props.navigation.navigate("TelaJardim")}
+                        onPress={() => props.navigation.navigate("TelaJardim")}
                     >
                         <Text style={style.smallText}>Voltar</Text>
                     </TouchableOpacity>
@@ -118,39 +147,34 @@ export default (props) => {
                         <Picker.Item label="Girassol" value="girassol" />
                         <Picker.Item label="Orquidea" value="orquidea" />
                     </Picker>
-                    <Text style={style.contentSmallText}>Foto</Text>
-                    <TouchableOpacity style={style.clickButton}>
-                        <Text style={{
-                            color: 'white',
-                            fontSize: 14,
-                            fontWeight: 'bold',
-                            fontFamily: 'inter'
-                        }}>Clique Aqui</Text>
-                    </TouchableOpacity>
                     <Text style={style.contentSmallText}>Monitoramento Automático</Text>
                     <View style={style.buttons}>
                         <TouchableOpacity
-                            style={style.rightButton}
+                            style={monitoramento ? [style.rightButton, style.activeButton] : [style.rightButton, style.inactiveButton]}
+                            onPress={() => setMonitoramento(true)}
                         >
-                            <Text style={[style.buttonText, style.activeButton]}> Ligado </Text>
+                            <Text style={monitoramento ? [style.buttonText, style.activeButton] : [style.buttonText, style.inactiveButton]}> Ligado </Text>
                         </TouchableOpacity>
                         <TouchableOpacity
-                            style={style.leftButton}
-                            disabled={true}
+                            style={!monitoramento ? [style.leftButton, style.activeButton] : [style.leftButton, style.inactiveButton]}
+                            onPress={() => setMonitoramento(false)}
                         >
-                            <Text style={[style.buttonText, style.inactiveButton]}> Desligado </Text>
+                            <Text style={!monitoramento ? [style.buttonText, style.activeButton] : [style.buttonText, style.inactiveButton]}> Desligado </Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={{
-                        backgroundColor: '#5DB075',
-                        borderRadius: 40,
-                        padding: 12,
-                        marginTop: 125,
-                        marginBottom: 45,
-                        width: "100%",
-                        alignItems: 'center'
+                    <TouchableOpacity
+                        style={{
+                            backgroundColor: '#5DB075',
+                            borderRadius: 40,
+                            padding: 12,
+                            marginTop: 125,
+                            marginBottom: 45,
+                            width: "100%",
+                            alignItems: 'center'
+                        }}
 
-                    }}>
+                        onPress={() => adiocionarPlanta()}
+                    >
                         <Text style={{
                             color: 'white',
                             fontSize: 16,
