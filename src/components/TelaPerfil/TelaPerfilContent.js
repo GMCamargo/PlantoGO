@@ -30,7 +30,7 @@ const renderItem = ({ item }) => (
 
 const style = StyleSheet.create({
     margem: {
-        marginTop: 145
+        marginTop: 125
     },
     buttons: {
         marginLeft:15,

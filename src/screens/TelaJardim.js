@@ -38,7 +38,7 @@ export default ({ navigation }) => {
         
         <View style={styles.container}>
             <TelaJardimHeader navigation={navigation} />
-            { isLoading ? <ActivityIndicator/> : (
+            { isLoading ? <ActivityIndicator style= {{flex: 1, position:"absolute", marginTop: '50%', marginLeft: '35%'}} animating = {isLoading} size="large" color = "#5DB075" />  : (
             <TelaJardimContent data = {data} navigation={navigation}/>
             )}
         </View>

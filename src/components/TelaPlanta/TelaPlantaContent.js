@@ -1,36 +1,121 @@
-import React, {useState} from 'react'
-import { Text, StyleSheet, View, Button, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView } from 'react-native'
 import Icon from "react-native-vector-icons/FontAwesome"
 
 const style = StyleSheet.create({
     margem: {
         marginTop: 145,
-        padding: 10
+        padding: 10,
+        flex: 1
     },
-    topicos:{
+    topicos: {
         marginLeft: 10,
-        fontSize: 24,
+        fontSize: 18,
         color: "black",
         fontWeight: "700",
         fontFamily: "inter"
     },
     smallText: {
-        fontSize: 20,
+        fontSize: 16,
         color: "black",
         fontWeight: "600",
         fontFamily: "inter",
-        position: 'absolute'
+        alignSelf: 'flex-end'
+    },
+    grupo: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: 'wrap',
+        justifyContent: 'space-between'
     }
 })
 export default (props) => {
-    
+
     return (
         <View style={style.margem}>
-            <View style = {{flexDirection: "row", alignItems: 'center'}}>
-                <Icon name="circle" color={"#5DB075"} size={25} />
-                <Text style= {style.topicos}>Criado em</Text>
-                <Text style={style.smallText}>{props.date}</Text>
+
+            <View style={style.grupo}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon name="circle" color={"#5DB075"} size={25} />
+                    <Text style={style.topicos}>Criado em</Text>
+                </View>
+
+                <Text style={style.smallText}>{props.data}</Text>
             </View>
+
+            <View style={style.grupo}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon name="circle" color={"#5DB075"} size={25} />
+                    <Text style={style.topicos}>Intervalo para regar</Text>
+                </View>
+
+                <Text style={style.smallText}>{props.irrigacao}</Text>
+            </View>
+
+            <View style={style.grupo}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon name="circle" color={"#5DB075"} size={25} />
+                    <Text style={style.topicos}>Intervalo para adubar</Text>
+                </View>
+
+                <Text style={style.smallText}>{props.adubo}</Text>
+            </View>
+
+            <View style={style.grupo}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon name="circle" color={"#5DB075"} size={25} />
+                    <Text style={style.topicos}>Colocar no sol</Text>
+                </View>
+
+                <Text style={style.smallText}>{props.sol}</Text>
+            </View>
+
+            <View style={style.grupo}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon name="circle" color={"#5DB075"} size={25} />
+                    <Text style={style.topicos}>Tirar do sol</Text>
+                </View>
+
+                <Text style={style.smallText}>{props.forasol}</Text>
+            </View>
+
+            <View style={[style.grupo, {justifyContent:'space-evenly'}]}>
+
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: '#5DB075',
+                        borderRadius: 40,
+                        padding: 15,
+                        width:120,
+                        alignItems: 'center'
+                    }}
+                >
+                    <Text style={{
+                        color: 'white',
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        fontFamily: 'inter'
+                    }}>Editar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: '#5DB075',
+                        borderRadius: 40,
+                        padding: 15,
+                        width:120,
+                        alignItems: 'center'
+                    }}
+                >
+                    <Text style={{
+                        color: 'white',
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        fontFamily: 'inter'
+                    }}>Remover</Text>
+                </TouchableOpacity>
+            </View>
+
         </View>
     )
 }

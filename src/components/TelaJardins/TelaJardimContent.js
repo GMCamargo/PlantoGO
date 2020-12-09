@@ -24,11 +24,7 @@ export default ({navigation, data}) => {
         <TouchableOpacity
             onPress = {() => navigation.navigate('TelaPlanta',{
                 id: item.id,
-                nickname: item.name,
-                specie: item.specie,
-                monitoring: item.monitoring,
-                img: item.img,
-                date: item.date
+                img: item.img
             })}
         >
 
@@ -44,7 +40,7 @@ export default ({navigation, data}) => {
         </TouchableOpacity>
     );
     return (
-        <View>
+        <View style = {{flex:1}}>
             <FlatList
                 data={data}
                 renderItem={renderItem}

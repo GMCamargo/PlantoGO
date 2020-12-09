@@ -95,6 +95,8 @@ export default (props) => {
     const [monitoramento, setMonitoramento] = useState(true)
 
     const adiocionarPlanta = () => {
+        props.navigation.navigate('TelaJardim')
+
         return fetch('https://plantgo.herokuapp.com/create_plant', {
             method: 'POST',
             headers: {
@@ -112,7 +114,7 @@ export default (props) => {
         })
             .then((response) => {
                 response = response.json()
-                console.warn(response)
+                //console.warn(response)
             })
             .catch((error) => console.error(error))
     }
