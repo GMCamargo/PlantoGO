@@ -79,16 +79,23 @@ export default (props) => {
                 <Text style={style.smallText}>{props.forasol}</Text>
             </View>
 
-            <View style={[style.grupo, {justifyContent:'space-evenly'}]}>
+            <View style={[style.grupo, { justifyContent: 'space-evenly' }]}>
 
                 <TouchableOpacity
                     style={{
                         backgroundColor: '#5DB075',
                         borderRadius: 40,
                         padding: 15,
-                        width:120,
+                        width: 120,
                         alignItems: 'center'
                     }}
+
+                    onPress={() => props.navigation.navigate("TelaEditarPlanta", {
+                        name: props.nome,
+                        specie: props.especie,
+                        monitor: props.monitor
+                    })
+                    }
                 >
                     <Text style={{
                         color: 'white',
@@ -103,7 +110,7 @@ export default (props) => {
                         backgroundColor: '#5DB075',
                         borderRadius: 40,
                         padding: 15,
-                        width:120,
+                        width: 120,
                         alignItems: 'center'
                     }}
                 >

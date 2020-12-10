@@ -60,13 +60,17 @@ export default (props) => {
                 <SafeAreaView style={styles.container}>
                     <TelaPlantaHeader navigation={props.navigation} name="Minha plantinha" style={styles.header} />
                     <TelaPlantaProfile img={img} name={data.name} />
-                    <TelaPlantaContent style={styles.content}
+                    <TelaPlantaContent 
+                        style={styles.content}
                         data={data.created_at}
                         irrigacao={data.irrigate}
                         monitor = {data.monitor}
                         adubo = {data.soil}
                         sol = {data.sun_in}
                         forasol = {data.sun_out}
+                        navigation = {props.navigation}
+                        nome={data.name}
+                        especie = {data.specie}
                     />
                 </SafeAreaView>
             }

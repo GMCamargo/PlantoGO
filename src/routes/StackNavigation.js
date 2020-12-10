@@ -2,6 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import TelaJardim from "../screens/TelaJardim";
 import TelaAdicionarPlanta from '../screens/TelaAdicionarPlanta'
+import TelaEditarPlanta from '../screens/TelaEditarPlanta'
 import TelaPlanta from '../screens/TelaPlanta'
 import TelaPerfil from "../screens/TelaPerfil";
 import LoginNavigation from '../routes/LoginNavigation'
@@ -11,10 +12,10 @@ const Stack = createStackNavigator();
 const screenOptionStyle = {
     headerShown: false
 };
-const TelaLoginNavigator = () =>{
+const TelaLoginNavigator = () => {
     <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name="TelaLogin" component={LoginNavigation} />
-        </Stack.Navigator>
+        <Stack.Screen name="TelaLogin" component={LoginNavigation} />
+    </Stack.Navigator>
 }
 const TelaPerfilNavigator = () => {
     return (
@@ -35,7 +36,15 @@ const TelaJardimNavigator = () => {
 const TelaAdicionarPlantaNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name = "TelaAdicionarPlanta" component={TelaAdicionarPlanta}/>
+            <Stack.Screen name="TelaAdicionarPlanta" component={TelaAdicionarPlanta} />
+        </Stack.Navigator>
+    );
+}
+
+const TelaEditarPlantaNavigator = () => {
+    return (
+        <Stack.Navigator screenOptions={screenOptionStyle}>
+            <Stack.Screen name="TelaEditarPlanta" component={TelaEditarPlanta} />
         </Stack.Navigator>
     );
 }
@@ -43,9 +52,16 @@ const TelaAdicionarPlantaNavigator = () => {
 const TelaPlantaNavigator = () => {
     return (
         <Stack.Navigator screenOptions={screenOptionStyle}>
-            <Stack.Screen name = "TelaPlanta" component={TelaPlanta}/>
+            <Stack.Screen name="TelaPlanta" component={TelaPlanta} />
         </Stack.Navigator>
     );
 }
 
-export { TelaPerfilNavigator, TelaJardimNavigator, TelaAdicionarPlantaNavigator, TelaLoginNavigator, TelaPlantaNavigator };
+export {
+    TelaPerfilNavigator,
+    TelaJardimNavigator,
+    TelaAdicionarPlantaNavigator,
+    TelaLoginNavigator,
+    TelaPlantaNavigator,
+    TelaEditarPlantaNavigator
+};
