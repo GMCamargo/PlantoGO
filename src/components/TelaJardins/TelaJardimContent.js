@@ -1,5 +1,5 @@
-import React from 'react'
-import { FlatList, StyleSheet, View,TouchableOpacity  } from 'react-native'
+import React,{useState} from 'react'
+import { FlatList, StyleSheet, View,TouchableOpacity, RefreshControl      } from 'react-native'
 import TelaJardimItemLista from './TelaJardimItemLista'
 
 
@@ -20,6 +20,28 @@ const style = StyleSheet.create({
 })
 
 export default ({navigation, data}) => {
+    const [refreshing, setRefreshing] = useState(false)
+    const [listData, setListData] = useState(data)
+
+    const onRefresh = React.useCallback(async () => {
+        setRefreshing(true)
+
+        return fetch('https://plantgo.herokuapp.com/garden', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                login: 'cleito'
+            })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                setListData(json)
+                setRefreshing(false)})
+            .catch((error) => console.error(error))
+    }, [refreshing])
     const renderItem = ({ item }) => (
         <TouchableOpacity
             onPress = {() => navigation.navigate('TelaPlanta',{
@@ -42,9 +64,13 @@ export default ({navigation, data}) => {
     return (
         <View style = {{flex:1}}>
             <FlatList
-                data={data}
+                data={listData}
                 renderItem={renderItem}
-                keyExtractor={item => item.id} />
+                keyExtractor={item => item.id} 
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+                />
+
+            
         </View>
     )
 }

@@ -61,6 +61,7 @@ export default (props) => {
                     <TelaPlantaHeader navigation={props.navigation} name="Minha plantinha" style={styles.header} />
                     <TelaPlantaProfile img={img} name={data.name} />
                     <TelaPlantaContent 
+                        id ={id}
                         style={styles.content}
                         data={data.created_at}
                         irrigacao={data.irrigate}

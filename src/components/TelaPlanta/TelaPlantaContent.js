@@ -30,7 +30,28 @@ const style = StyleSheet.create({
     }
 })
 export default (props) => {
+    const removerPlanta = () => {
+        props.navigation.navigate('TelaJardim')
 
+        return fetch('https://plantgo.herokuapp.com/delete_plant', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: props.id
+
+            })
+        })
+            .then((response) => {
+                response = response.json()
+                //console.warn(response)
+            })
+            .catch((error) => console.error(error))
+
+            props.navigation.navigate("MainNavigator")
+    }
     return (
         <View style={style.margem}>
 
@@ -91,6 +112,7 @@ export default (props) => {
                     }}
 
                     onPress={() => props.navigation.navigate("TelaEditarPlanta", {
+                        id: props.id,
                         name: props.nome,
                         specie: props.especie,
                         monitor: props.monitor
@@ -113,6 +135,8 @@ export default (props) => {
                         width: 120,
                         alignItems: 'center'
                     }}
+
+                    onPress = {() => {removerPlanta()}}
                 >
                     <Text style={{
                         color: 'white',

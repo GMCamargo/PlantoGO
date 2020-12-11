@@ -14,8 +14,8 @@ const style = StyleSheet.create({
     text:{
         fontSize: 32,
         fontWeight:"bold",
-        paddingLeft: 75,
-        paddingRight:75,
+        paddingLeft: 100,
+        paddingRight:100,
         paddingTop: 10,
         fontFamily: "inter"
     }

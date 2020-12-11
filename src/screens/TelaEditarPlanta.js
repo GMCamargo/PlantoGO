@@ -92,7 +92,7 @@ const style = StyleSheet.create({
 export default (props) => {
 
 
-    const { name, specie, monitor } = typeof props.route.params != "undefined" ?
+    const { id, name, specie, monitor } = typeof props.route.params != "undefined" ?
         props.route.params :
         { name: '', specie: 'Girassol', monitor: true }
 
@@ -103,18 +103,17 @@ export default (props) => {
     const [planta, setPlanta] = useState(specie)
     const [monitoramento, setMonitoramento] = useState(monitor)
 
-    const adiocionarPlanta = () => {
+    const editarPlanta = () => {
         props.navigation.navigate('TelaJardim')
 
-        return fetch('https://plantgo.herokuapp.com/create_plant', {
+        return fetch('https://plantgo.herokuapp.com/update_plant', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login: 'cleito',
-                garden: 'main',
+                id: id,
                 nickname: nome,
                 specie: planta.toLowerCase(),
                 monitoring: monitoramento ? 'true' : 'false'
@@ -184,7 +183,7 @@ export default (props) => {
                             alignItems: 'center'
                         }}
 
-                        onPress={() => adiocionarPlanta()}
+                        onPress={() => editarPlanta()}
                     >
                         <Text style={{
                             color: 'white',
