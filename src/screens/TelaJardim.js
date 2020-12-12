@@ -14,7 +14,7 @@ export default ({ navigation }) => {
     const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(true)
 
-    useEffect(() =>{
+    useEffect(() => {
         fetch('https://plantgo.herokuapp.com/garden', {
             method: 'POST',
             headers: {
@@ -22,26 +22,26 @@ export default ({ navigation }) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login: 'cleito'
+                login: 'marcon'
             })
         })
             .then((response) => response.json())
             .then((json) => setData(json))
             .catch((error) => console.error(error))
             .finally(() => setLoading(false))
-        },
+    },
         []
     )
 
     //console.warn(data)
     return (
-        
+
         <View style={styles.container}>
             <TelaJardimHeader navigation={navigation} />
-            { isLoading ? <ActivityIndicator style= {{flex: 1, position:"absolute", marginTop: '50%', marginLeft: '35%'}} animating = {isLoading} size="large" color = "#5DB075" />  : (
-            <TelaJardimContent data = {data} navigation={navigation}/>
+            { isLoading ? <ActivityIndicator style={{ flex: 1, position: "absolute", marginTop: '50%', marginLeft: '35%' }} animating={isLoading} size="large" color="#5DB075" /> : (
+                <TelaJardimContent data={data} navigation={navigation} />
             )}
         </View>
-        
+
     )
 }

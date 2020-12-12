@@ -20,7 +20,7 @@ const style = StyleSheet.create({
 })
 
 export default ({navigation, data}) => {
-    const [refreshing, setRefreshing] = useState(false)
+    const [refreshing, setRefreshing] = useState(true)
     const [listData, setListData] = useState(data)
 
     const onRefresh = React.useCallback(async () => {
@@ -33,7 +33,7 @@ export default ({navigation, data}) => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                login: 'cleito'
+                login: 'marcon'
             })
         })
             .then((response) => response.json())

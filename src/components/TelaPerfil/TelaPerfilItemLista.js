@@ -32,16 +32,19 @@ const style = StyleSheet.create({
         borderBottomWidth: 1
     },
     timeLeft:{
-        color:'lightgray',
+        color:'lightgrey',
         marginLeft:10
     }
 
 })
 
 export default (props) => {
+    const dic = {
+        'orquidea': require('../../images/orquidea.png')
+    }
     return (
         <View style={style.container}>
-            <Image source= {props.img} style={style.img}/>
+            <Image source= {dic[props.img]} style={style.img}/>
             <View style={style.textBorder}>
 
                 <Text style={style.title}>{props.title}</Text>
@@ -49,7 +52,7 @@ export default (props) => {
             </View>
 
             <View>
-                <Text style={style.timeLeft}>em 8 min  </Text>
+                <Text style={style.timeLeft}> {props.time}</Text>
             </View>
 
         </View>

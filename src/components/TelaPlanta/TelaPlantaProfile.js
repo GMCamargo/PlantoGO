@@ -24,7 +24,7 @@ const style = StyleSheet.create({
 
 export default (props) => {
     const dic = {
-        '../../images/orquidea.png': require('../../images/orquidea.png')
+        'orquidea': require('../../images/orquidea.png')
     }
     return (
             <View style={style.flutuante}>
